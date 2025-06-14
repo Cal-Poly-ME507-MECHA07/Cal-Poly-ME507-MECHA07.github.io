@@ -186,12 +186,13 @@ The software installed on the MCU has two goals.  The first goal is dispensing t
 
 A link to our project github can be found here: [GITHUB](https://github.com/Cal-Poly-ME507-MECHA07/Cal-Poly-ME507-MECHA07.github.io)
 
-The software provides a user interface over the hosted http website.  The website displays the current enabled status of the device
- and allows the user to toggle the state.  It also displays the current and target weights.  There are two main functional modes:
- feed once, and maintain weight.  Feed once will dispense the right amount of food, then disable the device.  Maintaining the weight
- will attempt to keep the level of the food bowl constant, but we have found that due to the slow drift of our load cells this
- function is only reliable for short periods of time.  Also on the website are buttons to manually advance the screw or cycle the
- flap, mostly for testing.
+The software provides a user interface over the hosted http website. The website displays the current enabled status 
+ of the device and allows the user to toggle the state.  It also displays the current and target weights.  There are three 
+ main functional modes: feed once, maintain weight, and timed feeding. For timed feeding, the website allows the user to 
+ enter a desired amount of hours and minutes from the current time that they wish for the cat feeder to run. Feed once will 
+ dispense the right amount of food, then disable the device.  Maintaining the weight will attempt to keep the level of the 
+ food bowl constant, but we have found that due to the slow drift of our load cells this function is only reliable for short 
+ periods of time.  Also on the website are buttons to manually advance the screw or  cycle the flap, mostly for testing.
 
 Naturally, the 96MHz MCU speed is overkill for the speed that the cat feeder needs to update its outputs.  As
  a result, we have the freedom to complete the control logic with simple Finite State Machines (FSM).  The filling action
@@ -205,10 +206,10 @@ The largest challenge of the software was getting the http server working.  The 
  to the browser.
 
 The main function first initializes the interface, then the ADC, and finally starts the main loop.  The main loop then calls
- the run_interface function, which checks for UART commands from the ST-Link and connection requests from the wifi module and
- responds with the appropriate data.  The run_interface function is non-blocking.  Then the main loop calls the run_filler 
- function, which runs the ADC FSM and the filling FSM.  The main loop is slowed to a speed of 100Hz to allow time for the wifi
- module uart connection to fill in the buffer.
+ the run_interface function, which checks for UART commands from the ST-Link and connection requests from the wifi module,
+ responds with the appropriate data, and handles alarms set by the user.  The run_interface function is non-blocking.  
+ Then the main loop calls the run_filler function, which runs the ADC FSM and the filling FSM.  The main loop is slowed to a 
+ speed of 100Hz to allow time for the wifi module uart connection to fill in the buffer.
 
 A top priority of this project is maximizing reliability.  If the user is out of town, the device needs to remain functional
  over long periods of time without any errors, to ensure the cat remains fed.  To clarify, the device doesn't need to be functional 
@@ -287,6 +288,8 @@ Due to the scope of the project and the timeline we had it was inevitable that w
  interaction with modern web browsers.  Modern web browsers have various requirements about how http servers need to 
  behave.  Further, these requirements are not well documented and web browsers provide very little error feedback.
  As a result, developing the server required a lot of guess and check before our browsers would accept the website.
+ Beyond just checking the website, the UART connection used for setting up the server and website frequently drops
+ characters, making the website setup inconsistent. 
 
 6. Load cell drift.  Our initial goal with this project was to use the load cells to track how much food the cat eats,
  and provide the user with the option to regulate food and view how much has been eaten.  Unfortunately, after building
@@ -300,6 +303,11 @@ Due to the scope of the project and the timeline we had it was inevitable that w
  the filter output was more a measure of how many noisy inputs were received in the given time period than an actual measure
  of the weight.  As a result, we moved toward a more simple filter that simply compares each value to the last value and
  discards it if the difference exceeds a threshold.
+
+8. Calendar IC Alarms. Firstly, we accidentally overlooked connecting the interrupts pins from the calendar IC to the MCU,
+ so currently we handle alarms using polling. In addition, receiving the current date and time from the http server proved very
+ buggy when testing the website, so the user currently plans the feeding by inputting the desired feed time relative to the
+ current time. Future development on the website will add absolute time alarms. 
 
  <pre>
 
