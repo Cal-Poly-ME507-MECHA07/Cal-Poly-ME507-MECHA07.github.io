@@ -15,6 +15,19 @@ const bool FAST_START = true; /**< when set true, feeder will skip the network s
 const int MORE_VAL = 20; /**< the weight to increase the target when requested by user */
 const int LESS_VAL = 10; /**< the weight to decrease the target when requested by user */
 
+static const uint8_t CALENDAR_ADDRESS = 0b1010001 <<1; /**< I2C Address of the cal ic*/
+static const uint8_t SECONDS = 0x01; /**< r Address of the cal ic*/
+static const uint8_t MINUTES = 0x02; /**< I2C Address of the cal ic*/
+static const uint8_t HOURS = 0x03; /**< I2C Address of the cal ic*/
+static const uint8_t DAYS = 0x04; /**< I2C Address of the cal ic*/
+static const uint8_t WEEKDAYS = 0x05; /**< I2C Address of the cal ic*/
+static const uint8_t MONTHS = 0x06; /**< I2C Address of the cal ic*/
+static const uint8_t YEARS = 0x07; /**< I2C Address of the cal ic*/
+static const uint8_t RCTM = 0x28; /**< I2C Address of the cal ic*/
+static const uint8_t STOP = 0x2E; /**< I2C Address of the cal ic*/
+static const uint8_t OSC = 0x25;
+static const uint8_t HOUR24 = 0b00100000;
+
 const char HTTP_HEADER[] =
     "HTTP/1.1 200 OK\r\n"
     "Content-Type: text/html\r\n"
@@ -22,34 +35,45 @@ const char HTTP_HEADER[] =
     "Content-Length: %d\r\n"
     "\r\n";
 
-const char HTTP_CONTENT[] =
-    "<!DOCTYPE html>\n"
-    "<html>\n"
-    "<head><title>AUTOMATIC FEEDER</title></head>\n"
-    "<body>\n"
-	"  <h2>%s</h2>"
-	"  <h2>TARGET WEIGHT:  %d</h2>"
-    "  <h2>CURRENT WEIGHT: %d</h2>\n"
-    "  <form method=\"POST\" action=\"/ENA\" style=\"margin-top: 50px;\">\n"
-    "    <button type=\"submit\" style=\"font-size : 20px;\">TOGGLE ENABLE</button>\n"
-    "  </form>\n"
-	"  <form method=\"POST\" action=\"/FED\" style=\"margin-top: 100px;\">\n"
-	"    <button type=\"submit\" style=\"font-size : 20px;\">FEED ONCE</button>\n"
-	"  </form>\n"
-	"  <form method=\"POST\" action=\"/MOR\" style=\"margin-top: 100px;\">\n"
-	"    <button type=\"submit\" style=\"font-size : 20px;\">MAINTAIN MORE</button>\n"
-	"  </form>\n"
-	"  <form method=\"POST\" action=\"/LES\" style=\"margin-top: 25px;\">\n"
-	"    <button type=\"submit\" style=\"font-size : 20px;\">MAINTAIN LESS</button>\n"
-	"  </form>\n"
-    "  <form method=\"POST\" action=\"/SCR\" style=\"margin-top: 100px;\">\n"
-    "    <button type=\"submit\" style=\"font-size : 20px;\">ADVANCE SCREW</button>\n"
-    "  </form>\n"
-    "  <form method=\"POST\" action=\"/FLA\" style=\"margin-top: 25px;\">\n"
-    "    <button type=\"submit\" style=\"font-size : 20px;\">CYCLE FLAP</button>\n"
-    "  </form>\n"
-    "</body>\n"
-    "</html>\n";
+const char HTTP_CONTENT1[] =
+		"<!DOCTYPE html>\n"
+		"<html>\n"
+		"<head><title>AUTOMATIC FEEDER</title></head>\n"
+		"<body>\n"
+		"<h2>%s</h2>\n"
+		"<h2>%s</h2>"
+		"<h2>TARGET WEIGHT:  %d</h2>\n"
+		"<h2>CURRENT WEIGHT: %d</h2>\n"
+		"<form method=\"POST\" action=\"/TIM\" style=\"margin-top: 50px;\">\n"
+		"  <label for=\"feedtime\" style=\"font-size: 20px;\">SET FEED TIME:</label>\n"
+		"  <input type=\"time\" id=\"feedtime\" name=\"feedtime\" style=\"font-size: 20px; margin-left: 10px;\" required>\n"
+		"  <button type=\"submit\" style=\"font-size: 20px; margin-left: 10px;\">Set</button>\n"
+		"</form>\n";
+const char HTTP_CONTENT2[] =
+
+		"<form method=\"POST\" action=\"/ENA\" style=\"margin-top: 50px;\">\n"
+		"  <button type=\"submit\" style=\"font-size : 20px;\">TOGGLE ENABLE</button>\n"
+		"</form>\n"
+		"<form method=\"POST\" action=\"/FED\" style=\"margin-top: 100px;\">\n"
+		"  <button type=\"submit\" style=\"font-size : 20px;\">FEED ONCE</button>\n"
+		"</form>\n"
+		"<form method=\"POST\" action=\"/MOR\" style=\"margin-top: 100px;\">\n"
+		"  <button type=\"submit\" style=\"font-size : 20px;\">MAINTAIN MORE</button>\n"
+		"</form>\n"
+		"<form method=\"POST\" action=\"/LES\" style=\"margin-top: 25px;\">\n"
+		"  <button type=\"submit\" style=\"font-size : 20px;\">MAINTAIN LESS</button>\n"
+		"</form>\n"
+		"<form method=\"POST\" action=\"/SCR\" style=\"margin-top: 100px;\">\n"
+		"  <button type=\"submit\" style=\"font-size : 20px;\">ADVANCE SCREW</button>\n"
+		"</form>\n"
+		"<form method=\"POST\" action=\"/FLA\" style=\"margin-top: 25px;\">\n"
+		"  <button type=\"submit\" style=\"font-size : 20px;\">CYCLE FLAP</button>\n"
+		"</form>\n"
+		"  <form method=\"POST\" action=\"/RES\" style=\"margin-top: 100px;\">\n"
+		"    <button type=\"submit\" style=\"font-size : 20px;\">RESET</button>\n"
+		"  </form>\n"
+		"</body>\n"
+		"</html>\n";
 
 const char HTTP_REDIRECT[] =
     "HTTP/1.1 302 Found\r\n"
@@ -60,17 +84,28 @@ const char HTTP_REDIRECT[] =
 
 interface_struct_t interStruct;
 
-void init_interface(UART_HandleTypeDef* uart1, UART_HandleTypeDef* wifi) {
+uint8_t buf[8];
+
+void init_interface(UART_HandleTypeDef* uart1, UART_HandleTypeDef* wifi, I2C_HandleTypeDef* calendar) {
 	interStruct.uart1 = uart1;
 	interStruct.wifi = wifi;
+	interStruct.calendar = calendar;
 
 	interStruct.TS = 0;
 	interStruct.initState = S0_DELAY;
 	interStruct.prevInitState = S6_DONE;
 	interStruct.offset = 0;
+	interStruct.alarm_flag = false;
+	interStruct.resetFlag = false;
 
 	// start the wifi server
 	 HAL_UART_Receive_IT(interStruct.wifi, &interStruct.wifiChar, 1);
+
+	 // initialize the calendar
+	 buf[0] = 0x01;
+	 HAL_I2C_Mem_Write(interStruct.calendar, CALENDAR_ADDRESS, STOP, 1, buf, 1, HAL_MAX_DELAY);
+	 buf[0] = HOUR24;
+	 HAL_I2C_Mem_Write(interStruct.calendar, CALENDAR_ADDRESS, OSC, 1, buf, 1, HAL_MAX_DELAY);
 }
 
 int start_interface() {
@@ -197,6 +232,40 @@ int start_interface() {
 }
 
 void run_interface() {
+
+	bool delay = false;
+
+	// check for if the alarm flag is raised to indicate feeding time
+	if (interStruct.alarm_flag == true){
+
+		HAL_StatusTypeDef ret = HAL_I2C_Mem_Read(interStruct.calendar, CALENDAR_ADDRESS, SECONDS, 1, buf, 3, HAL_MAX_DELAY);
+		if ( ret == HAL_OK ) {
+
+			//Combine the bytes
+		  int minutes_read = (((buf[1])&0b01111111)>>4)*10+(buf[1]&0x0F);
+		  int hours_read = (((buf[2])&0b00111111)>>4)*10+(buf[2]&0x0F);
+
+		  if ((minutes_read == interStruct.alarm_minutes) && (hours_read == interStruct.alarm_hours)){
+
+			  enable_filler();
+
+			  set_target(get_target() + MORE_VAL);
+			  // set run once flag
+			  run_once();
+
+			  int len = sprintf(interStruct.uartOut, "ALARM TRIGGERED\r\n");
+			  HAL_UART_Transmit(interStruct.uart1, interStruct.uartOut, len, 100);
+			  interStruct.alarm_flag = false;
+
+		  }
+
+		  interStruct.rel_minutes = interStruct.alarm_minutes - minutes_read;
+		  interStruct.rel_hours = interStruct.alarm_hours - hours_read;
+
+		}
+
+	}
+
 	// check uart commands
 	  if (HAL_UART_Receive(interStruct.uart1, &interStruct.uartChar, 1, 0) == HAL_OK) {
 		  if ((interStruct.uartChar != 13) || (interStruct.uartChar != 10)) {
@@ -253,7 +322,7 @@ void run_interface() {
 			  HAL_UART_Transmit(interStruct.uart1, interStruct.uartOut, len, 100);
 		  }
 
-		  if (interStruct.uartChar == 97) { // a toggle idle
+		  /*if (interStruct.uartChar == 97) { // a toggle idle
 			  enable_filler();
 		  }
 
@@ -263,7 +332,7 @@ void run_interface() {
 
 		  if (interStruct.uartChar == 100) { // d advance flap
 			  cycle_flap();
-		  }
+		  }*/
 
 	  }
 
@@ -278,7 +347,7 @@ void run_interface() {
 
 		  int wifiAddr = 0;
 
-		  for (int i = 0; i < interStruct.wifiIndex-4; i++) {
+		  for (int i = 0; i < interStruct.wifiIndex-5; i++) {
 
 			  // update the wifi address with the most recent channel
 			  if (interStruct.wifiIn[i] == 43) { // +
@@ -305,6 +374,13 @@ void run_interface() {
 				  if (interStruct.wifiIn[i+1] == 69) { // E
 					  if (interStruct.wifiIn[i+2] == 84) { // T
 
+						  // empty the buffer
+						  interStruct.wifiIndex = 0;
+						  interStruct.wifiIndex2 = 0;
+
+						  HAL_Delay(100);
+						  delay = true;
+
 						  // return the website
 
 						  // first determine what to display
@@ -321,30 +397,36 @@ void run_interface() {
 							  enaStr = "?";
 						  }
 
-						  // calculate length of content
-						  int len = sprintf(interStruct.wifiOut2, HTTP_CONTENT, enaStr, get_target()-interStruct.offset, get_weight()-interStruct.offset);
-						  // fill in header with length, calculate length of header
-						  len = sprintf(interStruct.wifiOut, HTTP_HEADER, len);
-						  // calculate length of content
-						  int len2 = sprintf(interStruct.wifiOut, HTTP_CONTENT, enaStr, get_target()-interStruct.offset, get_weight()-interStruct.offset);
+						  char* alarmStr;
+						  if (interStruct.alarm_flag == true) {
+							  sprintf(alarmStr, "ALARM SET: %d h %d m", interStruct.rel_hours, interStruct.rel_minutes);
+						  } else {
+							  alarmStr = "NO ALARM";
+						  }
+
+						  int len = sprintf(interStruct.wifiOut2, HTTP_CONTENT1, enaStr, alarmStr, get_target()-interStruct.offset, get_weight()-interStruct.offset);
+						  int len2 = strlen(HTTP_CONTENT2);
+						  int len3 = sprintf(interStruct.wifiOut2, HTTP_HEADER, len+len2);
+
 						  // prep esp module for data transmission
-						  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len2+len);
-						  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+						  len3 = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len+len2+len3);
+						  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len3, 100);
 						  HAL_Delay(100);
-						  // calculate length of content
-						  len = sprintf(interStruct.wifiOut2, HTTP_CONTENT, enaStr, get_target()-interStruct.offset, get_weight()-interStruct.offset);
-						  // fill in header with length, calculate length of header
-						  len = sprintf(interStruct.wifiOut, HTTP_HEADER, len);
-						  // concat the header and the content in memory
-						  len2 = sprintf(&interStruct.wifiOut[len], HTTP_CONTENT, enaStr, get_target()-interStruct.offset, get_weight()-interStruct.offset);
-						  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len+len2, 100);
-						  HAL_Delay(200);
+
+						  len = sprintf(interStruct.wifiOut, HTTP_HEADER, len+len2);
+						  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+
+						  len = sprintf(interStruct.wifiOut, HTTP_CONTENT1, enaStr, alarmStr, get_target()-interStruct.offset, get_weight()-interStruct.offset);
+						  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+
+						  len = sprintf(&interStruct.wifiOut, HTTP_CONTENT2);
+						  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+
+						  HAL_Delay(100);
 						  // close the connection
 						  len = sprintf(interStruct.wifiOut, "AT+CIPCLOSE=%d\r\n", wifiAddr);
 						  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
-						  // empty the buffer
-						  interStruct.wifiIndex = 0;
-						  interStruct.wifiIndex2 = 0;
+
 					  }
 				  }
 			  }
@@ -353,6 +435,10 @@ void run_interface() {
 				  if (interStruct.wifiIn[i+1] == 69) { // E
 					  if (interStruct.wifiIn[i+2] == 78) { // N
 						  if (interStruct.wifiIn[i+3] == 65) { // A
+
+							  // reset the buffer
+							  interStruct.wifiIndex = 0;
+							  interStruct.wifiIndex2 = 0;
 
 							  enable_filler();
 
@@ -366,11 +452,10 @@ void run_interface() {
 							  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
 							  HAL_Delay(100);
+							  delay = true;
 							  len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
-							  // reset the buffer
-							  interStruct.wifiIndex = 0;
-							  interStruct.wifiIndex2 = 0;
+
 						  }
 					  }
 				  }
@@ -380,6 +465,10 @@ void run_interface() {
 				  if (interStruct.wifiIn[i+1] == 70) { // F
 					  if (interStruct.wifiIn[i+2] == 69) { // E
 						  if (interStruct.wifiIn[i+3] == 68) { // D
+
+							  // reset the buffer
+							  interStruct.wifiIndex = 0;
+							  interStruct.wifiIndex2 = 0;
 
 							  // increase the target weight
 							  set_target(get_target() + MORE_VAL);
@@ -391,11 +480,10 @@ void run_interface() {
 							  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
 							  HAL_Delay(100);
+							  delay = true;
 							  len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
-							  // reset the buffer
-							  interStruct.wifiIndex = 0;
-							  interStruct.wifiIndex2 = 0;
+
 						  }
 					  }
 				  }
@@ -406,6 +494,10 @@ void run_interface() {
 					  if (interStruct.wifiIn[i+2] == 79) { // O
 						  if (interStruct.wifiIn[i+3] == 82) { // R
 
+							  // reset the buffer
+							  interStruct.wifiIndex = 0;
+							  interStruct.wifiIndex2 = 0;
+
 							  // increase the target weight
 							  set_target(get_target() + MORE_VAL);
 
@@ -414,11 +506,10 @@ void run_interface() {
 							  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
 							  HAL_Delay(100);
+							  delay = true;
 							  len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
-							  // reset the buffer
-							  interStruct.wifiIndex = 0;
-							  interStruct.wifiIndex2 = 0;
+
 						  }
 					  }
 				  }
@@ -429,6 +520,10 @@ void run_interface() {
 					  if (interStruct.wifiIn[i+2] == 69) { // E
 						  if (interStruct.wifiIn[i+3] == 83) { // S
 
+							  // reset the buffer
+							  interStruct.wifiIndex = 0;
+							  interStruct.wifiIndex2 = 0;
+
 							  // decrease the target weight
 							  set_target(get_target() - LESS_VAL);
 
@@ -437,11 +532,10 @@ void run_interface() {
 							  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
 							  HAL_Delay(100);
+							  delay = true;
 							  len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
-							  // reset the buffer
-							  interStruct.wifiIndex = 0;
-							  interStruct.wifiIndex2 = 0;
+
 						  }
 					  }
 				  }
@@ -451,6 +545,11 @@ void run_interface() {
 				  if (interStruct.wifiIn[i+1] == 83) { // S
 					  if (interStruct.wifiIn[i+2] == 67) { // C
 						  if (interStruct.wifiIn[i+3] == 82) { // R
+
+							  // reset the buffer
+							  interStruct.wifiIndex = 0;
+							  interStruct.wifiIndex2 = 0;
+
 							  // advance the screw
 							  advance_screw();
 
@@ -459,11 +558,10 @@ void run_interface() {
 							  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
 							  HAL_Delay(100);
+							  delay = true;
 							  len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
-							  // reset the buffer
-							  interStruct.wifiIndex = 0;
-							  interStruct.wifiIndex2 = 0;
+
 						  }
 					  }
 				  }
@@ -473,6 +571,11 @@ void run_interface() {
 				  if (interStruct.wifiIn[i+1] == 70) { // F
 					  if (interStruct.wifiIn[i+2] == 76) { // L
 						  if (interStruct.wifiIn[i+3] == 65) { // A
+
+							  // reset the buffer
+							  interStruct.wifiIndex = 0;
+							  interStruct.wifiIndex2 = 0;
+
 							  // run the flap
 							  cycle_flap();
 
@@ -481,11 +584,106 @@ void run_interface() {
 							  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
 							  HAL_Delay(100);
+							  delay = true;
 							  len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
 							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+
+						  }
+					  }
+				  }
+			  }
+
+			  if (interStruct.wifiIn[i] == 105) { // i
+				  if (interStruct.wifiIn[i+1] == 109) { // m
+					  if (interStruct.wifiIn[i+2] == 101) { // e
+						  if (interStruct.wifiIn[i+3] == 61) { // =
+
+							  if (interStruct.wifiIndex - i > 10) {
+
+								  int hours = (interStruct.wifiIn[i+4]-48)*10+interStruct.wifiIn[i+5]-48;
+								  int minutes = (interStruct.wifiIn[i+9]-48)*10+interStruct.wifiIn[i+10]-48;
+
+								  // reset the buffer
+								  interStruct.wifiIndex = 0;
+								  interStruct.wifiIndex2 = 0;
+
+								  int len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
+								  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len);
+								  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+								  HAL_Delay(100);
+								  delay = true;
+
+								  len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
+								  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+
+								  len = sprintf(interStruct.uartOut, "\r\nTIME SET: hours:%d minutes:%d\r\n:", hours, minutes);
+								  HAL_UART_Transmit(interStruct.uart1, interStruct.uartOut, len, 100);
+								  set_target_time(minutes, hours);
+
+							  }
+
+
+						  }
+					  }
+				  }
+			  }
+
+			  if (interStruct.wifiIn[i] == 116) { // t
+				  if (interStruct.wifiIn[i+1] == 105) { // i
+					  if (interStruct.wifiIn[i+2] == 109) { // m
+						  if (interStruct.wifiIn[i+3] == 61) { // =
+
+							  if (interStruct.wifiIndex - i > 10) {
+
+								  int hours = (interStruct.wifiIn[i+4]-48)*10+interStruct.wifiIn[i+5]-48;
+								  int minutes = (interStruct.wifiIn[i+9]-48)*10+interStruct.wifiIn[i+10]-48;
+
+								  // reset the buffer
+								  interStruct.wifiIndex = 0;
+								  interStruct.wifiIndex2 = 0;
+
+								  int len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
+								  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len);
+								  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+								  HAL_Delay(100);
+								  delay = true;
+
+								  len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
+								  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+
+								  len = sprintf(interStruct.uartOut, "\r\nCURRENT TIME: hours:%d minutes:%d\r\n:", hours, minutes);
+								  HAL_UART_Transmit(interStruct.uart1, interStruct.uartOut, len, 100);
+
+							  }
+
+						  }
+
+					  }
+				  }
+			  }
+
+
+			  if (interStruct.wifiIn[i] == 47) { // /
+				  if (interStruct.wifiIn[i+1] == 82) { // R
+					  if (interStruct.wifiIn[i+2] == 69) { // E
+						  if (interStruct.wifiIn[i+3] == 83) { // S
+
 							  // reset the buffer
 							  interStruct.wifiIndex = 0;
 							  interStruct.wifiIndex2 = 0;
+
+							  interStruct.resetFlag = true;
+
+							  // send the redirect response over wifi
+							  int len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
+							  len = sprintf(interStruct.wifiOut, "AT+CIPSEND=%d,%d\r\n", wifiAddr, len);
+							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+							  HAL_Delay(100);
+							  delay = true;
+							  len = sprintf(interStruct.wifiOut, HTTP_REDIRECT);
+							  HAL_UART_Transmit(interStruct.wifi, interStruct.wifiOut, len, 100);
+
+
 						  }
 					  }
 				  }
@@ -494,7 +692,7 @@ void run_interface() {
 	  }
 
 	  // clear wifi buffer if its full of junk
-	  if (interStruct.wifiIndex > 90) {
+	  if ((interStruct.wifiIndex > 90) && (delay == false)) {
 		  interStruct.wifiIndex = 0;
 		  interStruct.wifiIndex2 = 0;
 	  }
@@ -516,11 +714,47 @@ void wifi_interrupt(UART_HandleTypeDef *huart) {
 	HAL_UART_Receive_IT(huart, &interStruct.wifiChar, 1);
 }
 
+void set_target_time(int minutes, int hours){
+
+	HAL_StatusTypeDef ret = HAL_I2C_Mem_Read(interStruct.calendar, CALENDAR_ADDRESS, SECONDS, 1, buf, 3, HAL_MAX_DELAY);
+
+	if ( ret == HAL_OK ) {
+
+		//Combine the bytes
+		  int seconds_read = (((buf[0])&0b01111111)>>4)*10+(buf[0]&0x0F);
+		  int minutes_read = (((buf[1])&0b01111111)>>4)*10+(buf[1]&0x0F);
+		  int hours_read = (((buf[2])&0b00111111)>>4)*10+(buf[2]&0x0F);
+
+		  int len = sprintf(interStruct.uartOut, "CURRENT TIME: %d minutes, %d hours/r/n", minutes_read, hours_read);
+		  HAL_UART_Transmit(interStruct.uart1, interStruct.uartOut, len, 100);
+
+		  interStruct.alarm_minutes = minutes+minutes_read;
+		  if (interStruct.alarm_minutes>59){
+			  interStruct.alarm_minutes = interStruct.alarm_minutes-60;
+		  }
+		  interStruct.alarm_hours = hours+hours_read;
+		  if (interStruct.alarm_hours>23){
+			  interStruct.alarm_hours = interStruct.alarm_hours-24;
+		  }
+
+		  interStruct.alarm_flag = true;
+		  buf[0] = 0x00;
+		  ret = HAL_I2C_Mem_Write(interStruct.calendar, CALENDAR_ADDRESS, STOP, 1, buf, 1, HAL_MAX_DELAY);
+
+		  len = sprintf(interStruct.uartOut, "NEW ALARM: %d minutes, %d hours\r\n", interStruct.alarm_minutes, interStruct.alarm_hours);
+		  HAL_UART_Transmit(interStruct.uart1, interStruct.uartOut, len, 100);
+	}
+}
+
 int get_offset() {
 	return interStruct.offset;
 }
 
 void set_offset(int offset) {
 	interStruct.offset = offset;
+}
+
+bool get_reset_flag() {
+	return interStruct.resetFlag;
 }
 

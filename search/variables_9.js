@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['prevadcstate_0',['prevAdcState',['../structadc__struct__t.html#af8872a807f2d9bc1e685f1c8d51e50ba',1,'adc_struct_t']]],
-  ['prevfillstate_1',['prevFillState',['../structfill__struct__t.html#a4c168195ae9e170f38f368cc24b3f811',1,'fill_struct_t']]],
-  ['previndex_2',['prevIndex',['../structadc__struct__t.html#ac60d3e5f1f19a0118c47114f58bb9a71',1,'adc_struct_t']]],
-  ['previnitstate_3',['prevInitState',['../structinterface__struct__t.html#ae04bda48caa9c944a93be61131a11dc5',1,'interface_struct_t']]],
-  ['prevl_4',['prevL',['../structadc__struct__t.html#a05e9b50337cac3b9bbfaa694edf7c8e7',1,'adc_struct_t']]],
-  ['prevmainstate_5',['prevMainState',['../main_8c.html#a70c727f50c998932fcea52db74a2da28',1,'main.c']]],
-  ['prevr_6',['prevR',['../structadc__struct__t.html#a65d252e7b7d0d110bd69e53189ca6a51',1,'adc_struct_t']]]
+  ['mainstamp_0',['mainStamp',['../main_8c.html#a90005858c62b4bff8b522f98d8317e88',1,'main.c']]],
+  ['mainstate_1',['mainState',['../main_8c.html#acc9c4e4afaa58ae9479d0b2a5b0360ac',1,'main.c']]],
+  ['more_5fval_2',['MORE_VAL',['../_interface_8c.html#a72723ee31872bb73ad652d3c3a689b72',1,'Interface.c']]]
 ];

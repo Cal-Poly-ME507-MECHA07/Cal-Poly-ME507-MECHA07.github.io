@@ -101,23 +101,87 @@ $(function(){initNavTree('structinterface__struct__t.html','',''); });
 Data Fields</h2></td></tr>
 <tr class="memitem:a6744d086de7ddab4143600750c4d9580" id="r_a6744d086de7ddab4143600750c4d9580"><td class="memItemLeft" align="right" valign="top">UART_HandleTypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6744d086de7ddab4143600750c4d9580">uart1</a></td></tr>
 <tr class="memitem:a70c4267c9cddfd1c5b8c4c55dd4db31f" id="r_a70c4267c9cddfd1c5b8c4c55dd4db31f"><td class="memItemLeft" align="right" valign="top">UART_HandleTypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70c4267c9cddfd1c5b8c4c55dd4db31f">wifi</a></td></tr>
+<tr class="memitem:ac705f10e679c07b0527c7534e55b46c0" id="r_ac705f10e679c07b0527c7534e55b46c0"><td class="memItemLeft" align="right" valign="top">I2C_HandleTypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac705f10e679c07b0527c7534e55b46c0">calendar</a></td></tr>
 <tr class="memitem:a2c24fd077c3f45ebe0e06792a52cc697" id="r_a2c24fd077c3f45ebe0e06792a52cc697"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c24fd077c3f45ebe0e06792a52cc697">TS</a></td></tr>
 <tr class="memitem:a1e8bd495fa914ff1ac926b82a67fec51" id="r_a1e8bd495fa914ff1ac926b82a67fec51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_interface_8h.html#a0a42ce3303fe75281339035382c8578d">init_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e8bd495fa914ff1ac926b82a67fec51">initState</a></td></tr>
 <tr class="memitem:ae04bda48caa9c944a93be61131a11dc5" id="r_ae04bda48caa9c944a93be61131a11dc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_interface_8h.html#a0a42ce3303fe75281339035382c8578d">init_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae04bda48caa9c944a93be61131a11dc5">prevInitState</a></td></tr>
+<tr class="memitem:a5c55fda30b2b07e209bd385208e634ae" id="r_a5c55fda30b2b07e209bd385208e634ae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c55fda30b2b07e209bd385208e634ae">alarm_minutes</a></td></tr>
+<tr class="memitem:ae125591adbfbc83048815a3680ca56b1" id="r_ae125591adbfbc83048815a3680ca56b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae125591adbfbc83048815a3680ca56b1">alarm_hours</a></td></tr>
 <tr class="memitem:aa99b4aa6c4f585f68aecd49f30bdc87f" id="r_aa99b4aa6c4f585f68aecd49f30bdc87f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa99b4aa6c4f585f68aecd49f30bdc87f">uartIn</a> [100]</td></tr>
 <tr class="memitem:ae66bc8f6297f78dfaa8cf38228ec5fd7" id="r_ae66bc8f6297f78dfaa8cf38228ec5fd7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66bc8f6297f78dfaa8cf38228ec5fd7">uartChar</a></td></tr>
 <tr class="memitem:ab69287eb2555eb30f7b1dd47e9d136ab" id="r_ab69287eb2555eb30f7b1dd47e9d136ab"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab69287eb2555eb30f7b1dd47e9d136ab">uartOut</a> [100]</td></tr>
 <tr class="memitem:acea91d8cb248f28d79ba7eaa21f804b6" id="r_acea91d8cb248f28d79ba7eaa21f804b6"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acea91d8cb248f28d79ba7eaa21f804b6">wifiIn</a> [100]</td></tr>
 <tr class="memitem:a53f7b90cb040ebf098242fbd72156c6b" id="r_a53f7b90cb040ebf098242fbd72156c6b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53f7b90cb040ebf098242fbd72156c6b">wifiChar</a></td></tr>
-<tr class="memitem:a210aec56d4cc4bb3a83f97b9b6f3084f" id="r_a210aec56d4cc4bb3a83f97b9b6f3084f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a210aec56d4cc4bb3a83f97b9b6f3084f">wifiOut</a> [2000]</td></tr>
-<tr class="memitem:a3a0542bac401f1a35a476ec1c9d683c0" id="r_a3a0542bac401f1a35a476ec1c9d683c0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a0542bac401f1a35a476ec1c9d683c0">wifiOut2</a> [2000]</td></tr>
+<tr class="memitem:ad98487cebbe64e6712236b8572e8af3e" id="r_ad98487cebbe64e6712236b8572e8af3e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad98487cebbe64e6712236b8572e8af3e">wifiOut</a> [2048]</td></tr>
+<tr class="memitem:af0d28cd65d22212b394bcc5452c666d7" id="r_af0d28cd65d22212b394bcc5452c666d7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0d28cd65d22212b394bcc5452c666d7">wifiOut2</a> [2048]</td></tr>
 <tr class="memitem:a81e29bcc325c9bed02654b65cd9ccb9a" id="r_a81e29bcc325c9bed02654b65cd9ccb9a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81e29bcc325c9bed02654b65cd9ccb9a">wifiIndex</a></td></tr>
 <tr class="memitem:adb162c685937b0ac7e3e9adf9defec09" id="r_adb162c685937b0ac7e3e9adf9defec09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb162c685937b0ac7e3e9adf9defec09">wifiIndex2</a></td></tr>
 <tr class="memitem:aed7ea92f45bd273dde380a45ddced592" id="r_aed7ea92f45bd273dde380a45ddced592"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed7ea92f45bd273dde380a45ddced592">offset</a></td></tr>
+<tr class="memitem:a3b0a771aa68d9b8fab75938c89e5cb66" id="r_a3b0a771aa68d9b8fab75938c89e5cb66"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b0a771aa68d9b8fab75938c89e5cb66">alarm_flag</a></td></tr>
+<tr class="memitem:acc5de7057bca19df71070a1aaa5995a7" id="r_acc5de7057bca19df71070a1aaa5995a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc5de7057bca19df71070a1aaa5995a7">resetFlag</a></td></tr>
+<tr class="memitem:ac3f3e9616d084b740a26378dc7cfeed8" id="r_ac3f3e9616d084b740a26378dc7cfeed8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3f3e9616d084b740a26378dc7cfeed8">rel_minutes</a></td></tr>
+<tr class="memitem:a1d803786f9d062126617940f1d938969" id="r_a1d803786f9d062126617940f1d938969"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d803786f9d062126617940f1d938969">rel_hours</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Struct of variables needed for the communication interfaces. </p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a3b0a771aa68d9b8fab75938c89e5cb66" name="a3b0a771aa68d9b8fab75938c89e5cb66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b0a771aa68d9b8fab75938c89e5cb66">&#9670;&#160;</a></span>alarm_flag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool alarm_flag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae125591adbfbc83048815a3680ca56b1" name="ae125591adbfbc83048815a3680ca56b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae125591adbfbc83048815a3680ca56b1">&#9670;&#160;</a></span>alarm_hours</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int alarm_hours</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c55fda30b2b07e209bd385208e634ae" name="a5c55fda30b2b07e209bd385208e634ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c55fda30b2b07e209bd385208e634ae">&#9670;&#160;</a></span>alarm_minutes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int alarm_minutes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac705f10e679c07b0527c7534e55b46c0" name="ac705f10e679c07b0527c7534e55b46c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac705f10e679c07b0527c7534e55b46c0">&#9670;&#160;</a></span>calendar</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">I2C_HandleTypeDef* calendar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>i2c connection to calendar ic </p>
+
+</div>
+</div>
 <a id="a1e8bd495fa914ff1ac926b82a67fec51" name="a1e8bd495fa914ff1ac926b82a67fec51"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1e8bd495fa914ff1ac926b82a67fec51">&#9670;&#160;</a></span>initState</h2>
 
@@ -160,6 +224,48 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>the last state of the wifi initialization FSM to run </p>
+
+</div>
+</div>
+<a id="a1d803786f9d062126617940f1d938969" name="a1d803786f9d062126617940f1d938969"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d803786f9d062126617940f1d938969">&#9670;&#160;</a></span>rel_hours</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rel_hours</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac3f3e9616d084b740a26378dc7cfeed8" name="ac3f3e9616d084b740a26378dc7cfeed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3f3e9616d084b740a26378dc7cfeed8">&#9670;&#160;</a></span>rel_minutes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rel_minutes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc5de7057bca19df71070a1aaa5995a7" name="acc5de7057bca19df71070a1aaa5995a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc5de7057bca19df71070a1aaa5995a7">&#9670;&#160;</a></span>resetFlag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool resetFlag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -313,14 +419,14 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a210aec56d4cc4bb3a83f97b9b6f3084f" name="a210aec56d4cc4bb3a83f97b9b6f3084f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a210aec56d4cc4bb3a83f97b9b6f3084f">&#9670;&#160;</a></span>wifiOut</h2>
+<a id="ad98487cebbe64e6712236b8572e8af3e" name="ad98487cebbe64e6712236b8572e8af3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad98487cebbe64e6712236b8572e8af3e">&#9670;&#160;</a></span>wifiOut</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t wifiOut[2000]</td>
+          <td class="memname">uint8_t wifiOut[2048]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -328,14 +434,14 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a3a0542bac401f1a35a476ec1c9d683c0" name="a3a0542bac401f1a35a476ec1c9d683c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a0542bac401f1a35a476ec1c9d683c0">&#9670;&#160;</a></span>wifiOut2</h2>
+<a id="af0d28cd65d22212b394bcc5452c666d7" name="af0d28cd65d22212b394bcc5452c666d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0d28cd65d22212b394bcc5452c666d7">&#9670;&#160;</a></span>wifiOut2</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t wifiOut2[2000]</td>
+          <td class="memname">uint8_t wifiOut2[2048]</td>
         </tr>
       </table>
 </div><div class="memdoc">

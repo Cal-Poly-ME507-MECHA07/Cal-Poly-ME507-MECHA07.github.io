@@ -40,6 +40,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
+
 SPI_HandleTypeDef hspi1;
 
 TIM_HandleTypeDef htim1;
@@ -77,6 +79,7 @@ static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USART2_UART_Init(void);
+static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -121,10 +124,11 @@ int main(void)
   MX_TIM4_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
   init_filler(&htim1, &htim3, &htim4, &hspi1);
-  init_interface(&huart1, &huart2);
+  init_interface(&huart1, &huart2, &hi2c1);
 
   /* USER CODE END 2 */
 
@@ -176,8 +180,15 @@ int main(void)
     			  print_msg(weightMsg);
 
     			  // restore the values
-    			  set_offset(offset + (weight - get_weight()));
-    			  set_target(target + (weight - get_weight()));
+				  set_offset(offset + (weight - get_weight()));
+				  set_target(target + (weight - get_weight()));
+
+				} else {
+
+					// if we were last powered down, tare the weight
+					int aveWeight = get_weight();
+					set_offset(aveWeight);
+					set_target(aveWeight);
 
 				}
 
@@ -207,9 +218,9 @@ int main(void)
     		 }
 
     		 // reset the device every 5 minutes
-    		 if ((HAL_GetTick() - resetStamp) > 300000) {
+    		 if (((HAL_GetTick() - resetStamp) > 300000) || (get_reset_flag())) {
     			 // only reset the device if it's not currently filling
-    			 if (get_fill_state() == S2_MEASURE) {
+    			 if (get_enable_state() == 0) {
 
     				 // write the current values to flash
 					  HAL_FLASH_Unlock();
@@ -228,6 +239,7 @@ int main(void)
 					  HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, 0x08020018, get_offset());
 					  HAL_FLASH_Lock();
 
+					  // trigger reset
 					 NVIC_SystemReset();
     			 }
     		 }
@@ -282,6 +294,40 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
 }
 
 /**

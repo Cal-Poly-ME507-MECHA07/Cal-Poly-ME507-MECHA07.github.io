@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['screw_5far_0',['SCREW_AR',['../_filler_8c.html#a50a533a149e407e1128d59878851e452',1,'Filler.c']]],
-  ['screwtim_1',['screwTim',['../structfill__struct__t.html#ab1d7951987e09d0412426a69c31c7668',1,'fill_struct_t']]],
-  ['startweight_2',['startWeight',['../structadc__struct__t.html#a02d9f5fe93f3e51c19387154449e55ca',1,'adc_struct_t']]]
+  ['prevadcstate_0',['prevAdcState',['../structadc__struct__t.html#af8872a807f2d9bc1e685f1c8d51e50ba',1,'adc_struct_t']]],
+  ['prevfillstate_1',['prevFillState',['../structfill__struct__t.html#a4c168195ae9e170f38f368cc24b3f811',1,'fill_struct_t']]],
+  ['previndex_2',['prevIndex',['../structadc__struct__t.html#ac60d3e5f1f19a0118c47114f58bb9a71',1,'adc_struct_t']]],
+  ['previnitstate_3',['prevInitState',['../structinterface__struct__t.html#ae04bda48caa9c944a93be61131a11dc5',1,'interface_struct_t']]],
+  ['prevl_4',['prevL',['../structadc__struct__t.html#ada5072c112679dd8564f20a50afb59bf',1,'adc_struct_t']]],
+  ['prevmainstate_5',['prevMainState',['../main_8c.html#a70c727f50c998932fcea52db74a2da28',1,'main.c']]],
+  ['prevr_6',['prevR',['../structadc__struct__t.html#a3d573beb0e9900104131eccf201164b3',1,'adc_struct_t']]]
 ];

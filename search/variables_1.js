@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['demo_0',['DEMO',['../_interface_8c.html#acdf5353a5500692cffd31de3ed2ce6e2',1,'Interface.c']]]
+  ['buf_0',['buf',['../_interface_8c.html#a631cb00ea94506727e7ab9cdd27cf9cd',1,'Interface.c']]]
 ];

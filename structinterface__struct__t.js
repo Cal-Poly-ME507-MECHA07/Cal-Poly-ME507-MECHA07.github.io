@@ -1,8 +1,15 @@
 var structinterface__struct__t =
 [
+    [ "alarm_flag", "structinterface__struct__t.html#a3b0a771aa68d9b8fab75938c89e5cb66", null ],
+    [ "alarm_hours", "structinterface__struct__t.html#ae125591adbfbc83048815a3680ca56b1", null ],
+    [ "alarm_minutes", "structinterface__struct__t.html#a5c55fda30b2b07e209bd385208e634ae", null ],
+    [ "calendar", "structinterface__struct__t.html#ac705f10e679c07b0527c7534e55b46c0", null ],
     [ "initState", "structinterface__struct__t.html#a1e8bd495fa914ff1ac926b82a67fec51", null ],
     [ "offset", "structinterface__struct__t.html#aed7ea92f45bd273dde380a45ddced592", null ],
     [ "prevInitState", "structinterface__struct__t.html#ae04bda48caa9c944a93be61131a11dc5", null ],
+    [ "rel_hours", "structinterface__struct__t.html#a1d803786f9d062126617940f1d938969", null ],
+    [ "rel_minutes", "structinterface__struct__t.html#ac3f3e9616d084b740a26378dc7cfeed8", null ],
+    [ "resetFlag", "structinterface__struct__t.html#acc5de7057bca19df71070a1aaa5995a7", null ],
     [ "TS", "structinterface__struct__t.html#a2c24fd077c3f45ebe0e06792a52cc697", null ],
     [ "uart1", "structinterface__struct__t.html#a6744d086de7ddab4143600750c4d9580", null ],
     [ "uartChar", "structinterface__struct__t.html#ae66bc8f6297f78dfaa8cf38228ec5fd7", null ],
@@ -13,6 +20,6 @@ var structinterface__struct__t =
     [ "wifiIn", "structinterface__struct__t.html#acea91d8cb248f28d79ba7eaa21f804b6", null ],
     [ "wifiIndex", "structinterface__struct__t.html#a81e29bcc325c9bed02654b65cd9ccb9a", null ],
     [ "wifiIndex2", "structinterface__struct__t.html#adb162c685937b0ac7e3e9adf9defec09", null ],
-    [ "wifiOut", "structinterface__struct__t.html#a210aec56d4cc4bb3a83f97b9b6f3084f", null ],
-    [ "wifiOut2", "structinterface__struct__t.html#a3a0542bac401f1a35a476ec1c9d683c0", null ]
+    [ "wifiOut", "structinterface__struct__t.html#ad98487cebbe64e6712236b8572e8af3e", null ],
+    [ "wifiOut2", "structinterface__struct__t.html#af0d28cd65d22212b394bcc5452c666d7", null ]
 ];

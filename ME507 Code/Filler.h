@@ -117,8 +117,8 @@ typedef struct {
 	int lWeight; /**< current measured weight of left load cell */
 	int rWeight; /**< current measured weight of right load cell */
 
-	int prevL[5]; /**< time history of left load cell weight for filtering */
-	int prevR[5]; /**< time history of right load cell weight for filtering */
+	int prevL[10]; /**< time history of left load cell weight for filtering */
+	int prevR[10]; /**< time history of right load cell weight for filtering */
 	int prevIndex; /**< current index of the time history buffers */
 
 	adc_state_t adcState; /**< next state of the adc reading FSM to run */
@@ -164,7 +164,11 @@ typedef struct {
 	bool runOnce; /**< flag to indicate that device should disable after weight is reached */
 
 	int timeOutStamp; /**< a time stamp to track if the filling action has timed out */
+
 	int lcErrorStamp; /**< a time stamp to track if the load cell is consistently erroring */
+	int lcErrorStamp2;
+
+	int lastSafeWeight;
 
 } fill_struct_t;
 

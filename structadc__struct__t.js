@@ -10,8 +10,8 @@ var structadc__struct__t =
     [ "lWeight", "structadc__struct__t.html#acf006380c538eede62b1c26b4a93b41d", null ],
     [ "prevAdcState", "structadc__struct__t.html#af8872a807f2d9bc1e685f1c8d51e50ba", null ],
     [ "prevIndex", "structadc__struct__t.html#ac60d3e5f1f19a0118c47114f58bb9a71", null ],
-    [ "prevL", "structadc__struct__t.html#a05e9b50337cac3b9bbfaa694edf7c8e7", null ],
-    [ "prevR", "structadc__struct__t.html#a65d252e7b7d0d110bd69e53189ca6a51", null ],
+    [ "prevL", "structadc__struct__t.html#ada5072c112679dd8564f20a50afb59bf", null ],
+    [ "prevR", "structadc__struct__t.html#a3d573beb0e9900104131eccf201164b3", null ],
     [ "rWeight", "structadc__struct__t.html#a4b4d414a8e5822e864f596c343b304a5", null ],
     [ "startWeight", "structadc__struct__t.html#a02d9f5fe93f3e51c19387154449e55ca", null ],
     [ "targetWeight", "structadc__struct__t.html#acfcf7348a65b87395c610990e5efc2ad", null ]

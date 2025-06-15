@@ -122,8 +122,8 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad97a124cc466df28602b58684021ebbd" id="r_ad97a124cc466df28602b58684021ebbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad97a124cc466df28602b58684021ebbd">init_interface</a> (UART_HandleTypeDef *uart1, UART_HandleTypeDef *wifi)</td></tr>
-<tr class="memdesc:ad97a124cc466df28602b58684021ebbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize all interface variables and start the callback.  <br /></td></tr>
+<tr class="memitem:a406e63467c618798e6c6377e4db06729" id="r_a406e63467c618798e6c6377e4db06729"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a406e63467c618798e6c6377e4db06729">init_interface</a> (UART_HandleTypeDef *uart1, UART_HandleTypeDef *wifi, I2C_HandleTypeDef *calendar)</td></tr>
+<tr class="memdesc:a406e63467c618798e6c6377e4db06729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize all interface variables and start the callback.  <br /></td></tr>
 <tr class="memitem:a53ed47c309afe0aee211e2e4d54595f8" id="r_a53ed47c309afe0aee211e2e4d54595f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53ed47c309afe0aee211e2e4d54595f8">start_interface</a> ()</td></tr>
 <tr class="memdesc:a53ed47c309afe0aee211e2e4d54595f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the startup FSM to configure the wifi module.  <br /></td></tr>
 <tr class="memitem:ab016b6a4d2cba674a89899ad1bc086e9" id="r_ab016b6a4d2cba674a89899ad1bc086e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab016b6a4d2cba674a89899ad1bc086e9">run_interface</a> ()</td></tr>
@@ -132,6 +132,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a1dcd0bef0d6c224293c0db1eb1faf86b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the most recent wifi data in the buffer.  <br /></td></tr>
 <tr class="memitem:a2ce7c4d064c3b1a3f182c3e830a4c31d" id="r_a2ce7c4d064c3b1a3f182c3e830a4c31d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ce7c4d064c3b1a3f182c3e830a4c31d">print_msg</a> (char *msg)</td></tr>
 <tr class="memdesc:a2ce7c4d064c3b1a3f182c3e830a4c31d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a string to the ST-Link uart.  <br /></td></tr>
+<tr class="memitem:a8a58eb6f82dc4958f17e4d927286be1e" id="r_a8a58eb6f82dc4958f17e4d927286be1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a58eb6f82dc4958f17e4d927286be1e">set_target_time</a> (int minutes, int hours)</td></tr>
 <tr class="memitem:ab18e623aae2dffdda4325f0904137a94" id="r_ab18e623aae2dffdda4325f0904137a94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab18e623aae2dffdda4325f0904137a94">get_offset</a> ()</td></tr>
 <tr class="memitem:a15477080bb9d8a2b77bf9d4a680b2cb8" id="r_a15477080bb9d8a2b77bf9d4a680b2cb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15477080bb9d8a2b77bf9d4a680b2cb8">set_offset</a> (int offset)</td></tr>
 </table>
@@ -179,8 +180,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad97a124cc466df28602b58684021ebbd" name="ad97a124cc466df28602b58684021ebbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad97a124cc466df28602b58684021ebbd">&#9670;&#160;</a></span>init_interface()</h2>
+<a id="a406e63467c618798e6c6377e4db06729" name="a406e63467c618798e6c6377e4db06729"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a406e63467c618798e6c6377e4db06729">&#9670;&#160;</a></span>init_interface()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +194,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>wifi</em></span>&#160;)</td>
+          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>wifi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">I2C_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>calendar</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -276,6 +282,27 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>offset</em></span></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a58eb6f82dc4958f17e4d927286be1e" name="a8a58eb6f82dc4958f17e4d927286be1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a58eb6f82dc4958f17e4d927286be1e">&#9670;&#160;</a></span>set_target_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_target_time </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minutes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>hours</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

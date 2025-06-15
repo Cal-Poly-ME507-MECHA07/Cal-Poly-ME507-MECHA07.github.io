@@ -95,8 +95,8 @@ $(function(){initNavTree('_interface_8c.html','',''); });
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad97a124cc466df28602b58684021ebbd" id="r_ad97a124cc466df28602b58684021ebbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad97a124cc466df28602b58684021ebbd">init_interface</a> (UART_HandleTypeDef *uart1, UART_HandleTypeDef *wifi)</td></tr>
-<tr class="memdesc:ad97a124cc466df28602b58684021ebbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize all interface variables and start the callback.  <br /></td></tr>
+<tr class="memitem:a406e63467c618798e6c6377e4db06729" id="r_a406e63467c618798e6c6377e4db06729"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a406e63467c618798e6c6377e4db06729">init_interface</a> (UART_HandleTypeDef *uart1, UART_HandleTypeDef *wifi, I2C_HandleTypeDef *calendar)</td></tr>
+<tr class="memdesc:a406e63467c618798e6c6377e4db06729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize all interface variables and start the callback.  <br /></td></tr>
 <tr class="memitem:a53ed47c309afe0aee211e2e4d54595f8" id="r_a53ed47c309afe0aee211e2e4d54595f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53ed47c309afe0aee211e2e4d54595f8">start_interface</a> ()</td></tr>
 <tr class="memdesc:a53ed47c309afe0aee211e2e4d54595f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the startup FSM to configure the wifi module.  <br /></td></tr>
 <tr class="memitem:ab016b6a4d2cba674a89899ad1bc086e9" id="r_ab016b6a4d2cba674a89899ad1bc086e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab016b6a4d2cba674a89899ad1bc086e9">run_interface</a> ()</td></tr>
@@ -105,8 +105,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:a2ce7c4d064c3b1a3f182c3e830a4c31d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a string to the ST-Link uart.  <br /></td></tr>
 <tr class="memitem:a1dcd0bef0d6c224293c0db1eb1faf86b" id="r_a1dcd0bef0d6c224293c0db1eb1faf86b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dcd0bef0d6c224293c0db1eb1faf86b">wifi_interrupt</a> (UART_HandleTypeDef *huart)</td></tr>
 <tr class="memdesc:a1dcd0bef0d6c224293c0db1eb1faf86b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the most recent wifi data in the buffer.  <br /></td></tr>
+<tr class="memitem:a8a58eb6f82dc4958f17e4d927286be1e" id="r_a8a58eb6f82dc4958f17e4d927286be1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a58eb6f82dc4958f17e4d927286be1e">set_target_time</a> (int minutes, int hours)</td></tr>
 <tr class="memitem:ab18e623aae2dffdda4325f0904137a94" id="r_ab18e623aae2dffdda4325f0904137a94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab18e623aae2dffdda4325f0904137a94">get_offset</a> ()</td></tr>
 <tr class="memitem:a15477080bb9d8a2b77bf9d4a680b2cb8" id="r_a15477080bb9d8a2b77bf9d4a680b2cb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15477080bb9d8a2b77bf9d4a680b2cb8">set_offset</a> (int offset)</td></tr>
+<tr class="memitem:a1e8e450fd8accd408c6b0310bd69ea25" id="r_a1e8e450fd8accd408c6b0310bd69ea25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e8e450fd8accd408c6b0310bd69ea25">get_reset_flag</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -115,9 +117,11 @@ Variables</h2></td></tr>
 <tr class="memitem:a72723ee31872bb73ad652d3c3a689b72" id="r_a72723ee31872bb73ad652d3c3a689b72"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72723ee31872bb73ad652d3c3a689b72">MORE_VAL</a> = 20</td></tr>
 <tr class="memitem:a323d2e9f7aa628a0bbf3d93ab7912783" id="r_a323d2e9f7aa628a0bbf3d93ab7912783"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a323d2e9f7aa628a0bbf3d93ab7912783">LESS_VAL</a> = 10</td></tr>
 <tr class="memitem:aca3da4346fbacd43d3c045759320b6f5" id="r_aca3da4346fbacd43d3c045759320b6f5"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca3da4346fbacd43d3c045759320b6f5">HTTP_HEADER</a> []</td></tr>
-<tr class="memitem:a2ca4d15c0030426a7d778e11370ca5fe" id="r_a2ca4d15c0030426a7d778e11370ca5fe"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ca4d15c0030426a7d778e11370ca5fe">HTTP_CONTENT</a> []</td></tr>
+<tr class="memitem:ab127dd4fb3ae8b384f63c39c7fcd8742" id="r_ab127dd4fb3ae8b384f63c39c7fcd8742"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab127dd4fb3ae8b384f63c39c7fcd8742">HTTP_CONTENT1</a> []</td></tr>
+<tr class="memitem:aa41e4a68e117ba050730370d8102efd5" id="r_aa41e4a68e117ba050730370d8102efd5"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa41e4a68e117ba050730370d8102efd5">HTTP_CONTENT2</a> []</td></tr>
 <tr class="memitem:a2c770c8c06093342b84050f54859c831" id="r_a2c770c8c06093342b84050f54859c831"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c770c8c06093342b84050f54859c831">HTTP_REDIRECT</a> []</td></tr>
 <tr class="memitem:a1a15f86d87a43d2e51f776e8916ff370" id="r_a1a15f86d87a43d2e51f776e8916ff370"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structinterface__struct__t.html">interface_struct_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a15f86d87a43d2e51f776e8916ff370">interStruct</a></td></tr>
+<tr class="memitem:a631cb00ea94506727e7ab9cdd27cf9cd" id="r_a631cb00ea94506727e7ab9cdd27cf9cd"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a631cb00ea94506727e7ab9cdd27cf9cd">buf</a> [8]</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="ab18e623aae2dffdda4325f0904137a94" name="ab18e623aae2dffdda4325f0904137a94"></a>
@@ -137,8 +141,25 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ad97a124cc466df28602b58684021ebbd" name="ad97a124cc466df28602b58684021ebbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad97a124cc466df28602b58684021ebbd">&#9670;&#160;</a></span>init_interface()</h2>
+<a id="a1e8e450fd8accd408c6b0310bd69ea25" name="a1e8e450fd8accd408c6b0310bd69ea25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e8e450fd8accd408c6b0310bd69ea25">&#9670;&#160;</a></span>get_reset_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool get_reset_flag </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a406e63467c618798e6c6377e4db06729" name="a406e63467c618798e6c6377e4db06729"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a406e63467c618798e6c6377e4db06729">&#9670;&#160;</a></span>init_interface()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -151,7 +172,12 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>wifi</em></span>&#160;)</td>
+          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>wifi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">I2C_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>calendar</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -240,6 +266,27 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a8a58eb6f82dc4958f17e4d927286be1e" name="a8a58eb6f82dc4958f17e4d927286be1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a58eb6f82dc4958f17e4d927286be1e">&#9670;&#160;</a></span>set_target_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_target_time </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minutes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>hours</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a53ed47c309afe0aee211e2e4d54595f8" name="a53ed47c309afe0aee211e2e4d54595f8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a53ed47c309afe0aee211e2e4d54595f8">&#9670;&#160;</a></span>start_interface()</h2>
 
@@ -297,6 +344,20 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="a631cb00ea94506727e7ab9cdd27cf9cd" name="a631cb00ea94506727e7ab9cdd27cf9cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a631cb00ea94506727e7ab9cdd27cf9cd">&#9670;&#160;</a></span>buf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t buf[8]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="acdf5353a5500692cffd31de3ed2ce6e2" name="acdf5353a5500692cffd31de3ed2ce6e2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acdf5353a5500692cffd31de3ed2ce6e2">&#9670;&#160;</a></span>DEMO</h2>
 
@@ -327,45 +388,70 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a2ca4d15c0030426a7d778e11370ca5fe" name="a2ca4d15c0030426a7d778e11370ca5fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ca4d15c0030426a7d778e11370ca5fe">&#9670;&#160;</a></span>HTTP_CONTENT</h2>
+<a id="ab127dd4fb3ae8b384f63c39c7fcd8742" name="ab127dd4fb3ae8b384f63c39c7fcd8742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab127dd4fb3ae8b384f63c39c7fcd8742">&#9670;&#160;</a></span>HTTP_CONTENT1</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char HTTP_CONTENT[]</td>
+          <td class="memname">const char HTTP_CONTENT1[]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">    <span class="stringliteral">&quot;&lt;!DOCTYPE html&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;&lt;html&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;&lt;head&gt;&lt;title&gt;AUTOMATIC FEEDER&lt;/title&gt;&lt;/head&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;&lt;body&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;h2&gt;%s&lt;/h2&gt;&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;h2&gt;TARGET WEIGHT:  %d&lt;/h2&gt;&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;h2&gt;CURRENT WEIGHT: %d&lt;/h2&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;form method=\&quot;POST\&quot; action=\&quot;/ENA\&quot; style=\&quot;margin-top: 50px;\&quot;&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;    &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;TOGGLE ENABLE&lt;/button&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;/form&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;form method=\&quot;POST\&quot; action=\&quot;/FED\&quot; style=\&quot;margin-top: 100px;\&quot;&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;    &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;FEED ONCE&lt;/button&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;/form&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;form method=\&quot;POST\&quot; action=\&quot;/MOR\&quot; style=\&quot;margin-top: 100px;\&quot;&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;    &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;MAINTAIN MORE&lt;/button&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;/form&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;form method=\&quot;POST\&quot; action=\&quot;/LES\&quot; style=\&quot;margin-top: 25px;\&quot;&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;    &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;MAINTAIN LESS&lt;/button&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;/form&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;form method=\&quot;POST\&quot; action=\&quot;/SCR\&quot; style=\&quot;margin-top: 100px;\&quot;&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;    &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;ADVANCE SCREW&lt;/button&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;/form&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;form method=\&quot;POST\&quot; action=\&quot;/FLA\&quot; style=\&quot;margin-top: 25px;\&quot;&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;    &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;CYCLE FLAP&lt;/button&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;  &lt;/form&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;&lt;/body&gt;\n&quot;</span></div>
-<div class="line">    <span class="stringliteral">&quot;&lt;/html&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;!DOCTYPE html&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;html&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;head&gt;&lt;title&gt;AUTOMATIC FEEDER&lt;/title&gt;&lt;/head&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;body&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;h2&gt;%s&lt;/h2&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;h2&gt;%s&lt;/h2&gt;&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;h2&gt;TARGET WEIGHT:  %d&lt;/h2&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;h2&gt;CURRENT WEIGHT: %d&lt;/h2&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;form method=\&quot;POST\&quot; action=\&quot;/TIM\&quot; style=\&quot;margin-top: 50px;\&quot;&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;label for=\&quot;feedtime\&quot; style=\&quot;font-size: 20px;\&quot;&gt;SET FEED TIME:&lt;/label&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;input type=\&quot;time\&quot; id=\&quot;feedtime\&quot; name=\&quot;feedtime\&quot; style=\&quot;font-size: 20px; margin-left: 10px;\&quot; required&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;button type=\&quot;submit\&quot; style=\&quot;font-size: 20px; margin-left: 10px;\&quot;&gt;Set&lt;/button&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa41e4a68e117ba050730370d8102efd5" name="aa41e4a68e117ba050730370d8102efd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa41e4a68e117ba050730370d8102efd5">&#9670;&#160;</a></span>HTTP_CONTENT2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char HTTP_CONTENT2[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line"> </div>
+<div class="line">        <span class="stringliteral">&quot;&lt;form method=\&quot;POST\&quot; action=\&quot;/ENA\&quot; style=\&quot;margin-top: 50px;\&quot;&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;TOGGLE ENABLE&lt;/button&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;form method=\&quot;POST\&quot; action=\&quot;/FED\&quot; style=\&quot;margin-top: 100px;\&quot;&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;FEED ONCE&lt;/button&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;form method=\&quot;POST\&quot; action=\&quot;/MOR\&quot; style=\&quot;margin-top: 100px;\&quot;&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;MAINTAIN MORE&lt;/button&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;form method=\&quot;POST\&quot; action=\&quot;/LES\&quot; style=\&quot;margin-top: 25px;\&quot;&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;MAINTAIN LESS&lt;/button&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;form method=\&quot;POST\&quot; action=\&quot;/SCR\&quot; style=\&quot;margin-top: 100px;\&quot;&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;ADVANCE SCREW&lt;/button&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;form method=\&quot;POST\&quot; action=\&quot;/FLA\&quot; style=\&quot;margin-top: 25px;\&quot;&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;CYCLE FLAP&lt;/button&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;form method=\&quot;POST\&quot; action=\&quot;/RES\&quot; style=\&quot;margin-top: 100px;\&quot;&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;    &lt;button type=\&quot;submit\&quot; style=\&quot;font-size : 20px;\&quot;&gt;RESET&lt;/button&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;  &lt;/form&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;/body&gt;\n&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;&lt;/html&gt;\n&quot;</span></div>
 </div><!-- fragment -->
 </div>
 </div>

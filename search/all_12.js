@@ -7,6 +7,6 @@ var searchData=
   ['wifiin_4',['wifiIn',['../structinterface__struct__t.html#acea91d8cb248f28d79ba7eaa21f804b6',1,'interface_struct_t']]],
   ['wifiindex_5',['wifiIndex',['../structinterface__struct__t.html#a81e29bcc325c9bed02654b65cd9ccb9a',1,'interface_struct_t']]],
   ['wifiindex2_6',['wifiIndex2',['../structinterface__struct__t.html#adb162c685937b0ac7e3e9adf9defec09',1,'interface_struct_t']]],
-  ['wifiout_7',['wifiOut',['../structinterface__struct__t.html#a210aec56d4cc4bb3a83f97b9b6f3084f',1,'interface_struct_t']]],
-  ['wifiout2_8',['wifiOut2',['../structinterface__struct__t.html#a3a0542bac401f1a35a476ec1c9d683c0',1,'interface_struct_t']]]
+  ['wifiout_7',['wifiOut',['../structinterface__struct__t.html#ad98487cebbe64e6712236b8572e8af3e',1,'interface_struct_t']]],
+  ['wifiout2_8',['wifiOut2',['../structinterface__struct__t.html#af0d28cd65d22212b394bcc5452c666d7',1,'interface_struct_t']]]
 ];

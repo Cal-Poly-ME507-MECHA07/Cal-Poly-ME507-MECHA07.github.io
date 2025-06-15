@@ -9,6 +9,7 @@ var main_8c =
     [ "HAL_UART_RxCpltCallback", "main_8c.html#ae494a9643f29b87d6d81e5264e60e57b", null ],
     [ "main", "main_8c.html#a840291bc02cba5474a4cb46a9b9566fe", null ],
     [ "SystemClock_Config", "main_8c.html#a70af21c671abfcc773614a9a4f63d920", null ],
+    [ "hi2c1", "main_8c.html#af7b2c26e44dadaaa798a5c3d82914ba7", null ],
     [ "hspi1", "main_8c.html#a9c6222bae4d0328dd843ae099623b40b", null ],
     [ "htim1", "main_8c.html#a25fc663547539bc49fecc0011bd76ab5", null ],
     [ "htim3", "main_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62", null ],

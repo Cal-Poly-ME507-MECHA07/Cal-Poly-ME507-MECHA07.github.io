@@ -10,5 +10,8 @@ var searchData=
   ['adcstate_7',['adcState',['../structadc__struct__t.html#a329e38a3bc323064380e5d00b6d48879',1,'adc_struct_t']]],
   ['adcstruct_8',['adcStruct',['../_filler_8c.html#aeb98e0cdde220ecd826b6e6ae2a48f73',1,'Filler.c']]],
   ['advance_5fscrew_9',['advance_screw',['../_filler_8c.html#a8e574eb45b4a3977ba71faa3c075be8b',1,'advance_screw():&#160;Filler.c'],['../_filler_8h.html#a8e574eb45b4a3977ba71faa3c075be8b',1,'advance_screw():&#160;Filler.c']]],
-  ['and_20justin_20lesko_10',['Hello! Welcome to our Mechatronics Term Project. Created by Evan Long and Justin Lesko.',['../index.html#autotoc_md0',1,'']]]
+  ['alarm_5fflag_10',['alarm_flag',['../structinterface__struct__t.html#a3b0a771aa68d9b8fab75938c89e5cb66',1,'interface_struct_t']]],
+  ['alarm_5fhours_11',['alarm_hours',['../structinterface__struct__t.html#ae125591adbfbc83048815a3680ca56b1',1,'interface_struct_t']]],
+  ['alarm_5fminutes_12',['alarm_minutes',['../structinterface__struct__t.html#a5c55fda30b2b07e209bd385208e634ae',1,'interface_struct_t']]],
+  ['and_20justin_20lesko_13',['Hello! Welcome to our Mechatronics Term Project. Created by Evan Long and Justin Lesko.',['../index.html#autotoc_md0',1,'']]]
 ];
